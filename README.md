@@ -12,8 +12,6 @@ This repository contains a Python script that functions as a ROS (Robot Operatin
 - **Continuous Operation**: The node operates in a loop, continuously handling user commands and updating the status of goals.
 - **Goal Management**: Key functionalities include setting new goals based on user inputs, cancelling ongoing goals, and logging the status of current goals, all within the ROS ecosystem.
 
-# ROS Node for Goal Setting and Position Publishing
-
 This Python script is a ROS node designed for setting goals, handling user commands, and publishing position and velocity data. It's part of the `assignment_2_2023` package and utilizes custom message types.
 
 ## Script Overview
