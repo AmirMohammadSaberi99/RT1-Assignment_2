@@ -1,5 +1,5 @@
 # RT1-Assignment_2 Amirmohammad Saberi - S5840276
-# ROS Node for Goal Management and Data Publishing - Node A
+## ROS Node for Goal Management and Data Publishing - Node A
 
 This repository contains a Python script that functions as a ROS (Robot Operating System) node. It's specifically designed for robotics applications requiring goal management and position and velocity data handling.
 
