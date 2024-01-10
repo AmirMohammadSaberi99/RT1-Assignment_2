@@ -158,4 +158,85 @@ if __name__ == "__main__":
     main()
 ```
 
+# ROS Node for Distance and Velocity Calculation
 
+This repository contains a Python script functioning as a ROS node. It's aimed at robotic systems, calculating distance and average velocity based on position and velocity data.
+
+## Overview of the Script's Functionality
+
+- The script calculates the distance between the current and target positions, as well as the average velocity from recent data.
+- It implements a ROS service (`info_service`), providing these calculated values upon request.
+- The node subscribes to the `/pos_vel` topic to receive real-time position and velocity data.
+- Global variables for distance and average velocity are updated based on the incoming data and shared through the service.
+
+This node is essential for applications requiring ongoing distance and velocity analysis in robotic systems.
+
+# ROS Node for Distance and Velocity Analysis
+
+This repository contains a Python script that serves as a ROS (Robot Operating System) node. It's designed to calculate and provide information about the distance and average velocity in a robotics application, part of the `assignment_2_2023` package.
+
+## Script Details
+
+The script includes functionalities for calculating the distance and average velocity based on the position and velocity data received from ROS messages. It also provides a ROS service to share these calculated values.
+
+### Key Functionalities
+
+- **Distance Calculation**: Computes the distance between the current position and a target position.
+- **Average Velocity Calculation**: Determines the average velocity from recent velocity readings.
+- **Global Value Updates**: Updates global variables with the calculated distance and average velocity.
+- **Service Request Handling**: Manages incoming service requests and sends back the calculated values.
+- **Service and Subscriber Initialization**: Sets up and advertises the 'info_service' ROS service and subscribes to the '/pos_vel' topic to receive position and velocity data.
+
+### Code
+
+```python
+#!/usr/bin/env python3
+
+import rospy
+import math
+from assignment_2_2023.msg import msga
+from assignment_2_2023.srv import Ave_pos_vel, Ave_pos_velResponse
+
+average_velocity = 0
+distance = 0
+
+def calculate_distance(target_pos_x, target_pos_y, current_pos_x, current_pos_y):
+    return math.sqrt((target_pos_x - current_pos_x) ** 2 + (target_pos_y - current_pos_y) ** 2)
+
+def calculate_average_velocity(recent_velocity_readings, window_size):
+    return sum(recent_velocity_readings) / min(len(recent_velocity_readings), window_size)
+
+def update_global_values(calculated_distance, calculated_avg_velocity):
+    global distance, average_velocity
+    distance = calculated_distance
+    average_velocity = calculated_avg_velocity
+
+def calculate_distance_and_average_velocity(msg):
+    target_pos_x = rospy.get_param('/des_pos_x', 0)
+    target_pos_y = rospy.get_param('/des_pos_y', 0)
+    current_pos_x = msg.positionx
+    current_pos_y = msg.positiony
+
+    calculated_distance = calculate_distance(target_pos_x, target_pos_y, current_pos_x, current_pos_y)
+    velocity_window_size = rospy.get_param('/window_size', 10)
+    recent_velocity_readings = msg.velocityx[-velocity_window_size:] if isinstance(msg.velocityx, list) else [msg.velocityx]
+    calculated_avg_velocity = calculate_average_velocity(recent_velocity_readings, velocity_window_size)
+
+    update_global_values(calculated_distance, calculated_avg_velocity)
+
+def handle_service_request(_):
+    return Ave_pos_velResponse(distance, average_velocity)
+
+def initialize_service_and_subscriber():
+    rospy.Service("info_service", Ave_pos_vel, handle_service_request)
+    rospy.loginfo("Service 'info_service' is ready.")
+    rospy.Subscriber("/pos_vel", msga, calculate_distance_and_average_velocity)
+
+def main():
+    rospy.init_node('info_service')
+    initialize_service_and_subscriber()
+    rospy.spin()
+
+if __name__ == "__main__":
+    main()
+```
