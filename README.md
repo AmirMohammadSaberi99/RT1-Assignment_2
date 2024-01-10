@@ -18,6 +18,10 @@ This Python script is a ROS node designed for setting goals, handling user comma
 
 The script includes functions for initializing a ROS publisher and action client, subscribing to odometry data, processing user commands, setting and cancelling goals, logging goal status, and publishing position and velocity data.
 
+Here's the flowchart for node A
+
+![image](https://github.com/AmirMohammadSaberi99/RT1-Assignment_2/assets/64252685/7052df0f-1f3f-4689-879a-afeac8a1ffa0)
+
 Here's the detailed code with comments explaining each part:
 
 ```python
