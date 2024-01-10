@@ -111,8 +111,6 @@ This repository contains a Python script that functions as a ROS (Robot Operatin
 
 This script is essential for applications requiring real-time updates and responses based on the target positions in a robotic system.
 
-# ROS Node for Target Position Service
-
 This repository contains a Python script that implements a ROS service for retrieving the last set target positions in a robotics application. It's part of the `assignment_2_2023` package.
 
 ## Script Details
