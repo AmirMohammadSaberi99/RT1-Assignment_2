@@ -162,7 +162,7 @@ if __name__ == "__main__":
     main()
 ```
 
-# ROS Node for Distance and Velocity Calculation
+# ROS Node for Distance and Velocity Calculation Node C
 
 This repository contains a Python script functioning as a ROS node. It's aimed at robotic systems, calculating distance and average velocity based on position and velocity data.
 
@@ -174,8 +174,6 @@ This repository contains a Python script functioning as a ROS node. It's aimed a
 - Global variables for distance and average velocity are updated based on the incoming data and shared through the service.
 
 This node is essential for applications requiring ongoing distance and velocity analysis in robotic systems.
-
-# ROS Node for Distance and Velocity Analysis
 
 This repository contains a Python script that serves as a ROS (Robot Operating System) node. It's designed to calculate and provide information about the distance and average velocity in a robotics application, part of the `assignment_2_2023` package.
 
