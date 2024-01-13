@@ -197,7 +197,7 @@ The script includes functionalities for calculating the distance and average vel
 import rospy
 import math
 from assignment_2_2023.msg import msga
-from assignment_2_2023.srv import Ave_pos_vel, Ave_pos_velResponse
+from assignment_2_2023.srv import Average, AverageResponse
 
 average_velocity = 0
 distance = 0
