@@ -22,7 +22,7 @@ Here's the flowchart for node A
 
 ![image](https://github.com/AmirMohammadSaberi99/RT1-Assignment_2/assets/64252685/7052df0f-1f3f-4689-879a-afeac8a1ffa0)
 
-Here's the detailed code with comments explaining each part:
+Here's the detailed code:
 
 ```python
 #!/usr/bin/env python3
